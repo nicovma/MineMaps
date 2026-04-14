@@ -29,7 +29,7 @@ function ClickHandler({ onMapClick }: { onMapClick?: (lat: number, lng: number) 
   return null;
 }
 
-function FlightController({ targetCords }: { targetCords: {lat: number, lng: number} | null }) {
+function FlightController({ targetCords }: { targetCords: { lat: number, lng: number } | null }) {
   const map = useMap();
   useEffect(() => {
     if (targetCords) {
@@ -39,7 +39,7 @@ function FlightController({ targetCords }: { targetCords: {lat: number, lng: num
   return null;
 }
 
-function MapTracker({ onMove }: { onMove: (pos: {lat: number, lng: number}) => void }) {
+function MapTracker({ onMove }: { onMove: (pos: { lat: number, lng: number }) => void }) {
   useMapEvents({
     moveend(e) {
       const center = e.target.getCenter();
@@ -51,13 +51,13 @@ function MapTracker({ onMove }: { onMove: (pos: {lat: number, lng: number}) => v
 
 export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTarget, onCenterChange }: any) {
   // Mackay QLD Center
-  const initialCenter = [-21.144, 149.186];
-  
+  const initialCenter: [number, number] = [-37.3305, -59.1432];
+
   return (
-    <MapContainer 
-      center={initialCenter} 
-      zoom={8} 
-      zoomControl={false} 
+    <MapContainer
+      center={initialCenter}
+      zoom={8}
+      zoomControl={false}
       style={{ height: '100%', width: '100%' }}
       className="bg-zinc-950"
     >
@@ -69,11 +69,11 @@ export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTa
       <ClickHandler onMapClick={onMapClick} />
       <FlightController targetCords={flyTarget} />
       <MapTracker onMove={onCenterChange} />
-      
+
       {camps.map((camp: any) => (
-        <Marker 
-          key={camp.id} 
-          position={[camp.lat, camp.lng]} 
+        <Marker
+          key={camp.id}
+          position={[camp.lat, camp.lng]}
           icon={customIcon}
           eventHandlers={{ click: () => onCampClick(camp) }}
         />
