@@ -55,7 +55,7 @@ export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTa
 
   return (
     <MapContainer
-      center={initialCenter}
+      center={initialCenter as [number, number]}
       zoom={8}
       zoomControl={false}
       style={{ height: '100%', width: '100%' }}
