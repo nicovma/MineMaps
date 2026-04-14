@@ -51,7 +51,7 @@ function MapTracker({ onMove }: { onMove: (pos: { lat: number, lng: number }) =>
 
 export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTarget, onCenterChange }: any) {
   // Mackay QLD Center
-  const initialCenter: [number, number] = [-37.3305, -59.1432];
+  const initialCenter: [number, number] = [-21.18214245789904, 149.13818736701813];
 
   return (
     <MapContainer
