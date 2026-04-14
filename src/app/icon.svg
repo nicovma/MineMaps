@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+  <!-- Solid Marker -->
+  <path fill="#FFD700" d="M192 0C86 0 0 86 0 192c0 106 192 320 192 320s192-214 192-320c0-106-86-192-192-192z"/>
+  <!-- Tent cutout -->
+  <path fill="#18181b" d="M192 100L100 270h184L192 100z" />
+  <path fill="#FFD700" d="M192 140L170 270h44L192 140z" />
+</svg>
