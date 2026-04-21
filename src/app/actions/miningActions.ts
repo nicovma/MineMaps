@@ -8,10 +8,11 @@ export async function createCamp(formData: FormData) {
   const company = formData.get('company') as string;
   const lat = parseFloat(formData.get('lat') as string);
   const lng = parseFloat(formData.get('lng') as string);
+  const google_maps_link = formData.get('google_maps_link') as string;
 
   const { data, error } = await supabase
     .from('camps')
-    .insert([{ name, company, lat, lng, status: 'pending' }])
+    .insert([{ name, company, lat, lng, google_maps_link, status: 'pending' }])
     .select();
 
   if (error) {
@@ -28,10 +29,11 @@ export async function submitReview(formData: FormData) {
   const camp_id = formData.get('camp_id') as string;
   const comment = formData.get('comment') as string;
   const agency = formData.get('agency') as string;
-  const role = formData.get('role') as string;
-  const rate = parseFloat(formData.get('rate') as string) || 0;
-  const swing_start = formData.get('swing_start') as string || null;
-  const swing_end = formData.get('swing_end') as string || null;
+  const role = formData.get('role');
+  const rate = formData.get('rate') ? parseFloat(formData.get('rate') as string) : null;
+  const swing_start = formData.get('swing_start');
+  const swing_end = formData.get('swing_end');
+  const type = formData.get('type');
   
   const ratings = {
     food: parseInt(formData.get('rating_food') as string, 10) || 1,
@@ -42,7 +44,7 @@ export async function submitReview(formData: FormData) {
 
   const { data, error } = await supabase
     .from('reviews')
-    .insert([{ camp_id, ratings, comment, agency, role, rate, status: 'pending', swing_start, swing_end }])
+    .insert([{ camp_id, ratings, comment, agency, role, rate, status: 'pending', swing_start, swing_end, type }])
     .select();
 
   if (error || !data || data.length === 0) {

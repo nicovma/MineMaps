@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, ZoomControl, useMap } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -13,12 +14,23 @@ const svgIcon = `
 </svg>
 `;
 
-const customIcon = new L.DivIcon({
-  html: svgIcon,
-  className: '',
-  iconSize: [40, 50],
-  iconAnchor: [20, 50]
-});
+const createCustomIcon = (campName: string) => {
+  return new L.DivIcon({
+    html: `
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; transform: translate(-50%, -100%); width: 200px;">
+        <div style="width: 40px; height: 50px; display:flex; justify-content:center;">
+           ${svgIcon}
+        </div>
+        <span style="color: #FFD700; font-weight: 900; font-size: 11px; text-shadow: 1px 1px 4px black, -1px -1px 4px black, 1px -1px 4px black, -1px 1px 4px black; letter-spacing: 0.5px; margin-top: 2px; text-transform: uppercase;">
+           ${campName}
+        </span>
+      </div>
+    `,
+    className: 'custom-leaflet-icon',
+    iconSize: [0, 0], // The offset is managed by the translate -50% -100% inside the div
+    iconAnchor: [0, 0]
+  });
+};
 
 function ClickHandler({ onMapClick }: { onMapClick?: (lat: number, lng: number) => void }) {
   useMapEvents({
@@ -49,6 +61,15 @@ function MapTracker({ onMove }: { onMove: (pos: { lat: number, lng: number }) =>
   return null;
 }
 
+// Custom style for cluster markers
+const createClusterCustomIcon = function (cluster: any) {
+  return L.divIcon({
+    html: `<div style="background-color: #FFD700; color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; border: 4px solid #18181B; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);">${cluster.getChildCount()}</div>`,
+    className: 'custom-marker-cluster',
+    iconSize: L.point(40, 40, true),
+  });
+};
+
 export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTarget, onCenterChange }: any) {
   // Mackay QLD Center
   const initialCenter: [number, number] = [-21.18214245789904, 149.13818736701813];
@@ -70,14 +91,23 @@ export default function ClientLeafletMap({ camps, onMapClick, onCampClick, flyTa
       <FlightController targetCords={flyTarget} />
       <MapTracker onMove={onCenterChange} />
 
-      {camps.map((camp: any) => (
-        <Marker
-          key={camp.id}
-          position={[camp.lat, camp.lng]}
-          icon={customIcon}
-          eventHandlers={{ click: () => onCampClick(camp) }}
-        />
-      ))}
+      <MarkerClusterGroup
+        chunkedLoading
+        iconCreateFunction={createClusterCustomIcon}
+        showCoverageOnHover={false}
+        spiderfyOnMaxZoom={true}
+        zoomToBoundsOnClick={true}
+        maxClusterRadius={60}
+      >
+        {camps.map((camp: any) => (
+          <Marker
+            key={camp.id}
+            position={[camp.lat, camp.lng]}
+            icon={createCustomIcon(camp.name)}
+            eventHandlers={{ click: () => onCampClick(camp) }}
+          />
+        ))}
+      </MarkerClusterGroup>
     </MapContainer>
   );
 }

@@ -125,7 +125,7 @@ export default function MiningMap({ initialCamps }: { initialCamps: any[] }) {
              placeholder={t('search_placeholder')}
              value={searchQuery}
              onChange={e => setSearchQuery(e.target.value)}
-             className="w-full bg-zinc-900/80 backdrop-blur-md border border-zinc-700 text-white rounded-full py-4 px-6 outline-none focus:border-yellow-500 transition-colors shadow-lg shadow-black/50 tracking-wide font-medium"
+             className="w-full bg-zinc-900/80 backdrop-blur-md border border-zinc-700 text-white rounded-full py-4 px-6 outline-none focus:border-yellow-500 transition-colors shadow-lg shadow-black/50 tracking-wide font-medium text-[16px]"
            />
            {filteredCamps.length > 0 && (
              <div className="absolute top-full mt-2 left-0 right-0 bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl">
