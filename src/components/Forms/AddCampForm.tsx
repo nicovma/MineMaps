@@ -51,8 +51,7 @@ export default function AddCampForm({ lat, lng, onClose }: AddCampFormProps) {
           </div>
         ) : (
           <>
-            <h2 className="text-2xl font-black text-white mb-1 uppercase tracking-tight">{t('register_camp')}</h2>
-            <p className="text-xs text-yellow-500/80 mb-6 font-mono tracking-widest">LOC: {lat.toFixed(4)}, {lng.toFixed(4)}</p>
+            <h2 className="text-2xl font-black text-white mb-6 uppercase tracking-tight">{t('register_camp')}</h2>
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input required name="name" className="bg-zinc-950/50 border border-zinc-800 text-white rounded-xl p-4 outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all placeholder:text-zinc-600 text-[16px]" placeholder={t('camp_name')} />

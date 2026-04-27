@@ -111,7 +111,7 @@ export default function MiningMap({ initialCamps }: { initialCamps: any[] }) {
 
            {/* Brand Logo */}
            <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-yellow-500 drop-shadow-lg pointer-events-auto cursor-default text-center">
-             MINE<span className="text-white">MAPS</span> <span className="text-sm font-bold text-yellow-500/50">AU</span>
+             SWING<span className="text-white">REVIEWS</span> <span className="text-sm font-bold text-yellow-500/50">AU</span>
            </h1>
            
            {/* Spacer balancing right side */}

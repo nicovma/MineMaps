@@ -93,8 +93,8 @@ export default function ReviewList({ campId, onBack }: { campId: string, onBack:
                <div className="grid grid-cols-4 gap-2 mt-1">
                  {Object.entries(rev.ratings || {}).map(([key, val]) => (
                    <div key={key} className="bg-zinc-900 rounded p-1.5 flex flex-col items-center border border-zinc-800/50">
-                     <span className="text-[9px] text-zinc-500 uppercase tracking-widest font-black mb-1">{key}</span>
-                     <span className="text-white font-bold text-sm block">{(val as number).toFixed(1)}</span>
+                     <span className="text-[9px] text-zinc-500 uppercase tracking-widest font-black mb-1">{t(key)}</span>
+                     <span className="text-white font-bold text-sm block">{(typeof val === 'number') ? val.toFixed(1) : Number(val).toFixed(1)}</span>
                    </div>
                  ))}
                </div>

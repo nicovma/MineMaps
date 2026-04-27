@@ -6,7 +6,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MineMaps AU",
+  title: "Swing Reviews AU",
   description: "Crowdsourced mining camp reviews horizontally scaled using maps.",
 };
 

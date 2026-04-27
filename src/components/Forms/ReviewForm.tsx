@@ -90,19 +90,7 @@ export default function ReviewForm({ campId, campName, onSuccess }: { campId: st
                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
              </div>
            </div>
-           <input required name="rate" type="number" step="0.01" placeholder={t('hour_rate')} className="bg-zinc-950/50 border border-zinc-800 text-white rounded-xl p-4 outline-none focus:border-yellow-500 transition-all font-medium placeholder:text-zinc-600 text-[16px]" />
-        </div>
-
-        {/* 4. Hours */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1">
-             <label className="text-xs font-bold text-zinc-500 uppercase px-1">{t('hour_start')}</label>
-             <input required name="swing_start" type="text" placeholder="00:00" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" title="HH:MM" className="bg-zinc-950/50 border border-zinc-800 text-white rounded-xl p-4 outline-none focus:border-yellow-500 transition-all font-medium placeholder-zinc-700 font-mono tracking-widest text-center text-[16px]" />
-          </div>
-          <div className="flex flex-col gap-1">
-             <label className="text-xs font-bold text-zinc-500 uppercase px-1">{t('hour_end')}</label>
-             <input required name="swing_end" type="text" placeholder="00:00" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" title="HH:MM" className="bg-zinc-950/50 border border-zinc-800 text-white rounded-xl p-4 outline-none focus:border-yellow-500 transition-all font-medium placeholder-zinc-700 font-mono tracking-widest text-center text-[16px]" />
-          </div>
+           <input name="rate" type="number" step="0.01" placeholder={t('hour_rate')} className="bg-zinc-950/50 border border-zinc-800 text-white rounded-xl p-4 outline-none focus:border-yellow-500 transition-all font-medium placeholder:text-zinc-600 text-[16px]" />
         </div>
 
       </div>
