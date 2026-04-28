@@ -45,7 +45,7 @@ export const dictionary: Record<Language, Record<string, string>> = {
     hour_end: "Hora Fin",
     food: "Comida",
     bed: "Habitacion",
-    vibe: "Pibes",
+    vibe: "Vibes",
     wifi: "Wifi",
     google_maps_link: "Link a Google Maps (URL exacta)",
   },
